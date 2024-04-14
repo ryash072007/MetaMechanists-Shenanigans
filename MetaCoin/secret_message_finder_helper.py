@@ -8,7 +8,7 @@ def parse_log():
     output_file = open(parsed_output, "w")
 
     for line in log_file.readlines():
-        if "MetaCoin" in line:
+        if "MetaCoin" in line and "!" in line.rstrip():
             line_data = line[line.index("[CHAT] ") + 7:]
             output_file.write(line_data)
             parsed_output_set.add(line_data)
@@ -17,3 +17,8 @@ def parse_log():
     output_file.close()
 
 parse_log()
+
+parsed_output_list = list(parsed_output_set)
+
+for item in parsed_output_list:
+    print(item)
