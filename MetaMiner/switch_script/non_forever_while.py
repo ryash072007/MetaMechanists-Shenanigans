@@ -1,5 +1,4 @@
 import pyautogui as pag
-import subprocess
 
 def userClick(x, y, clicks=1, interval=1):
     pag.moveTo(x, y)
@@ -15,13 +14,14 @@ def fix():
     userClick(100, 100)
     pag.sleep(0.5)
 
-for x in range(200):
-    try:
-        fix()
-    except:
-        pass
-    pag.sleep(1)
+def fix_iter():
+    for x in range(2400):
+        try:
+            fix()
+        except:
+            pass
+        pag.sleep(1)
 
+while True:
+    fix_iter()
 
-subprocess.Popen(["python", "miner_1.py"])
-exit()
