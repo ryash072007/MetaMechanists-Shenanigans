@@ -23,5 +23,8 @@ def fix_iter():
         pag.sleep(1)
 
 while True:
-    fix_iter()
+    try:
+        fix()
+    except:
+        pass
 

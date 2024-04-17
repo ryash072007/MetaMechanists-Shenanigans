@@ -1,7 +1,7 @@
 import pyautogui as pag
+from datetime import datetime
 
 time_since_collected = 0
-cycles_since_fix = 0
 
 
 def userClick(x, y, clicks=1, interval=1):
@@ -15,8 +15,10 @@ def userClick(x, y, clicks=1, interval=1):
 def update():
     global time_since_collected
     time_since_collected = 0
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S") + " => "
 
-    print("Starting Coin collecting procedure")
+    print(dt_string + "Starting Coin collecting procedure")
     print("Proceeding to Page 1")
     userClick(802, 584, 2)  # Page 1
 
@@ -34,23 +36,16 @@ def update():
 
 
 def fix():
-    global cycles_since_fix
     pos = pag.locateOnScreen("red_pane.png", region=(714, 324, 490, 166))
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S") + " => "
+    print(dt_string + "Red Pane Detected: Attempting to fix it")
     userClick(pos[0] + pos[2] // 2, pos[1] + pos[3] // 2)
     userClick(100, 100)
     pag.sleep(0.5)
-    cycles_since_fix += 1
 
 
 while True:
-    if cycles_since_fix >= 5:
-        cycles_since_fix = 0
-        pag.hotkey("alt", "tab")
-        pag.sleep(2)
-        time_since_collected += 2
-        pag.hotkey("alt", "tab")
-        userClick(100, 100)
-
     if time_since_collected >= 1200:  # Do this every 20 minutes
         update()
 
