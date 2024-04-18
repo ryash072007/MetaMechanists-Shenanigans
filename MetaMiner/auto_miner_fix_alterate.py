@@ -17,10 +17,12 @@ def fix():
     userClick(pos[0] + pos[2] // 2, pos[1] + pos[3] // 2)
     userClick(100, 100)
 
-
+old_pos = (100, 100)
 while True:
-    try:
-        fix()
-        print("Attempting To Fix!")
-    except:
-        pass
+    new_pos = pag.position()
+    if new_pos != old_pos:
+        try:
+            fix()
+        except:
+            pass
+    old_pos = new_pos
