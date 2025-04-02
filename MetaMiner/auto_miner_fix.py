@@ -11,7 +11,8 @@ def userClick(x, y, clicks=1, interval=1):
 
 
 def fix():
-    pos = pag.locateOnScreen("red_pane.png", region=(714, 324, 500, 175))
+    pos = pag.locateOnScreen("red_pane.png", region=(714, 324, 500, 300), confidence=0.7)
+    print(pos)
     now = datetime.now()
     dt_string = now.strftime("%d/%m/%Y %H:%M:%S") + " => "
     print(dt_string + "Red Pane Detected: Attempting to fix it")
